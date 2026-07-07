@@ -1,0 +1,9 @@
+services:
+  api-tests:
+    build: .
+    command: pytest --env=${TEST_ENV:-qa} -n auto
+    volumes:
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+    environment:
+      TEST_ENV: ${TEST_ENV:-qa}

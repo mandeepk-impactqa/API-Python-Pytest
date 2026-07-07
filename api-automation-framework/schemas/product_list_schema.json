@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["page", "data"],
+  "properties": {
+    "page": {"type": "integer"},
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "year", "color", "pantone_value"],
+        "properties": {
+          "id": {"type": "integer"},
+          "name": {"type": "string"},
+          "year": {"type": "integer"},
+          "color": {"type": "string"},
+          "pantone_value": {"type": "string"}
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

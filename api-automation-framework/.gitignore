@@ -1,0 +1,14 @@
+.DS_Store
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+logs/*.log
+reports/*
+!reports/.gitkeep
+*.env.local
