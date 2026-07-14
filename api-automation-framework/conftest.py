@@ -20,8 +20,6 @@ from core.logger import get_logger
 
 pytest_plugins: list[str] = [
     "fixtures.api_fixtures",
-    "fixtures.auth_fixture",
-    "fixtures.mock_server",
 ]
 
 
@@ -51,7 +49,7 @@ def pytest_configure(config: pytest.Config) -> None:
     """Register custom markers and initialize report directories."""
     config.addinivalue_line("markers", "smoke: critical smoke tests")
     config.addinivalue_line("markers", "regression: broader regression tests")
-    config.addinivalue_line("markers", "negative: negative path tests")
+    config.addinivalue_line("markers", "external: tests that call an external API service")
     Path("reports").mkdir(exist_ok=True)
     Path("logs").mkdir(exist_ok=True)
 

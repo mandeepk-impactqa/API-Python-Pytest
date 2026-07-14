@@ -11,17 +11,16 @@ You do not need to understand the full code to run the tests.
 ## What This Project Does
 
 - Runs API tests automatically.
-- Checks login, users, products, and negative scenarios.
+- Checks the Rahul Shetty Academy Add Place API.
 - Creates an HTML report after every run.
 - Creates a single Allure HTML report file at `reports/allure-report.html`.
 - Opens the Allure report automatically after execution.
-- Uses a local demo API by default, so the project can run without an external
-  test server.
+- Uses Rahul Shetty Academy as the default API for real API practice.
 
 ## Main Folders
 
 ```text
-api/          API actions such as login, users, and products
+api/          API actions such as adding a place
 core/         Common code used by the framework
 fixtures/     Test setup code
 tests/        Actual test cases
@@ -80,22 +79,16 @@ Use this command when you only want to create the report file:
 
 ## Run Specific Test Groups
 
-Smoke tests:
+External API tests:
 
 ```bash
-.venv/bin/python -m pytest --env=qa -m smoke
+.venv/bin/python -m pytest --env=qa -m external
 ```
 
 Regression tests:
 
 ```bash
 .venv/bin/python -m pytest --env=qa -m regression
-```
-
-Negative tests:
-
-```bash
-.venv/bin/python -m pytest --env=qa -m negative
 ```
 
 ## Reports
@@ -140,10 +133,10 @@ config/uat.env
 config/prod.env
 ```
 
-By default, these files point to a local demo API:
+By default, `config/qa.env` points to the Rahul Shetty Academy API:
 
 ```text
-http://127.0.0.1:8765
+https://rahulshettyacademy.com
 ```
 
 For a real API, update `BASE_URL` in the correct environment file.
@@ -161,10 +154,7 @@ Tests are stored inside the `tests/` folder.
 Examples:
 
 ```text
-tests/test_login.py
-tests/test_users.py
-tests/test_products.py
-tests/test_negative.py
+tests/test_places.py
 ```
 
 The test files do not call the API directly. They use reusable API files from the
@@ -186,16 +176,12 @@ Test data can be stored in different formats:
 
 ```text
 JSON
-CSV
-YAML
 ```
 
 Existing examples are available here:
 
 ```text
 test_data/json/
-test_data/csv/
-test_data/yaml/
 ```
 
 ## Useful Commands
