@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Frontline house",
+    "language": "French-IN",
+    "accuracy": 50
+  },
+  {
+    "name": "Automation villa",
+    "language": "English-IN",
+    "accuracy": 75
+  },
+  {
+    "name": "API learning center",
+    "language": "Hindi-IN",
+    "accuracy": 100
+  }
+]

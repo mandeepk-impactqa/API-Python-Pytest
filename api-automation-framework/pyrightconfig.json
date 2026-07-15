@@ -1,0 +1,23 @@
+{
+  "include": [
+    "api",
+    "core",
+    "fixtures",
+    "tests",
+    "utils",
+    "conftest.py"
+  ],
+  "exclude": [
+    ".venv",
+    ".mypy_cache",
+    ".pytest_cache",
+    "logs",
+    "reports"
+  ],
+  "extraPaths": [
+    "."
+  ],
+  "typeCheckingMode": "basic",
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false
+}

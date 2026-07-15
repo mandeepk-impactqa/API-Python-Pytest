@@ -6,6 +6,7 @@ import os
 import json
 import shutil
 import subprocess
+import webbrowser
 from dataclasses import replace
 from datetime import datetime
 from html import escape
@@ -304,9 +305,27 @@ def _as_list(value: Any) -> list[Any]:
 
 def _open_html_report(report_path: Path) -> None:
     """Open an HTML file with the operating system default browser."""
+    resolved_report_path = report_path.resolve()
     opener = shutil.which("open") or shutil.which("xdg-open")
-    if opener is None:
-        get_logger("pytest").warning("Could not open %s because no browser opener was found.", report_path)
+    if opener is not None:
+        result = subprocess.run(
+            [opener, str(resolved_report_path)],
+            capture_output=True,
+            check=False,
+            text=True,
+        )
+        if result.returncode == 0:
+            return
+        get_logger("pytest").warning(
+            "System browser opener failed for %s: %s",
+            resolved_report_path,
+            result.stderr.strip() or result.stdout.strip() or f"exit code {result.returncode}",
+        )
+
+    if webbrowser.open_new_tab(resolved_report_path.as_uri()):
         return
 
-    subprocess.run([opener, report_path.resolve().as_uri()], check=False)
+    get_logger("pytest").warning(
+        "Could not open %s automatically. Open it manually in your browser.",
+        resolved_report_path,
+    )

@@ -8,6 +8,36 @@ show what passed and what failed.
 
 You do not need to understand the full code to run the tests.
 
+## Framework Type
+
+This is a Python Pytest based Data-Driven, Modular API Automation Framework.
+
+It is data-driven because request payloads and test case values are stored
+outside the test code:
+
+```text
+test_data/json/add_place_payload.json
+test_data/json/add_place_test_cases.json
+```
+
+It is modular because responsibilities are separated into different folders:
+
+```text
+tests/        Test cases
+api/          API methods
+core/         Reusable framework engine
+fixtures/     Pytest setup and dependency injection
+schemas/      Response schema validation
+test_data/    Request body and parameterized data
+config/       Environment configuration
+reports/      HTML and Allure reports
+```
+
+The framework supports API testing, pytest parameterization, JSON schema
+validation, environment configuration, reusable API clients, HTML reports,
+single-file Allure-style reports, and CI/CD readiness through Jenkins and Docker
+files.
+
 ## What This Project Does
 
 - Runs API tests automatically.
@@ -159,6 +189,16 @@ tests/test_places.py
 
 The test files do not call the API directly. They use reusable API files from the
 `api/` folder. This keeps the tests cleaner and easier to maintain.
+
+Current Add Place flow:
+
+```text
+tests/test_places.py                         Test logic and assertions
+api/place_api.py                             Add Place API method
+test_data/json/add_place_payload.json        Base request body
+test_data/json/add_place_test_cases.json     Parameterized test values
+schemas/add_place_success_schema.json        Expected response structure
+```
 
 ## Add A New API Test
 
